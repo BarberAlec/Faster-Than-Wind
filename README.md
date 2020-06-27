@@ -1,4 +1,4 @@
-# Pirate Mania                                                                                                          1 <<<<<<< HEAD#Pirate-Mania
+# Pirate Mania
 
 Welcome my lord, come and conquer the sea with me, and we can sail away into the sunset together.
 
