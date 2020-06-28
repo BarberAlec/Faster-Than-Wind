@@ -1,5 +1,6 @@
 // reference canvas tag from html, make it the width and height of window
-const canvas = document.querySelector('.myCanvas');
+var canvas = document.querySelector('.myCanvas');
+canvas.style.position = "absolute";
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;  
 // set canvas type as 2d
@@ -21,14 +22,6 @@ ctx.fillRect(0, 0, width, height);
 ctx.fillStyle = 'rgb(128,128,128)';
 ctx.fillRect(left_x, top_y, right_x-left_x, bottom_y-top_y);
 
-// red rectangle
-ctx.fillStyle = 'rgb(255, 0, 0)';
-ctx.fillRect(50, 50, 100, 150);
-
-// green semi-transparent rectangle
-ctx.fillStyle = 'rgba(0, 255, 0, .5)';
-ctx.fillRect(75, 75, 100, 100);
-
 // game border
 ctx.lineWidth = 5;
 ctx.strokeStyle = 'rgb(255, 255, 255)';
@@ -49,11 +42,18 @@ ctx.strokeRect(
 );
 
 
-// 1. 
+// BUTTONS
+
 var button = document.createElement("button");
 button.innerHTML = "Do Something";
+// button.style.marginTop = "20px";
+button.style.lineHeight = "60px";
+button.style.fontWeight = "bold";
+// button.style.padding = "0 40px";
+button.style.background = "salmon";
+button.style.border = "none";
+button.style.position = "absolute";
 
-// 2. Append somewhere
 var body = document.getElementsByTagName("body")[0];
 body.appendChild(button);
 
@@ -62,3 +62,15 @@ button.addEventListener ("click", function() {
   alert("did something");
 });
 
+
+// var div = document.createElement("div");
+// div.style.width = "100px";
+// div.style.height = "100px";
+// div.style.background = "red";
+// div.style.color = "white";
+// div.innerHTML = "Hello";
+
+// document.getElementById("main").appendChild(div);
+// <body>
+// <div id="main"></div>
+// </body>
