@@ -5,6 +5,13 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Faster Than Wind</title>
 
+<script src="jquery.js"></script>	// https://stackoverflow.com/questions/38837835/include-html-in-another-html-file
+<script> 
+$(function(){
+  $("#DivContent").load("audio_source.html"); 
+});
+</script>
+
 </head>
 
 <body>
@@ -12,6 +19,8 @@
 <canvas class="myCanvas" width="320" height="240">
   <p>Your browser doesn't support canvas. Boo hoo!</p>
 </canvas>
+
+<div id="DivContent"></div>
 
 <script src="background.js"></script>
 <script src="main_menu.js"></script>
