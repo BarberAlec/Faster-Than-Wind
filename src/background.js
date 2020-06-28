@@ -11,7 +11,7 @@ const left_x = width * 0.02;
 const right_x = width * 0.96;
 
 const enemy_border_percent_x = .30;
-const enemy_border_percent_y = .40; 
+const enemy_border_percent_y = .70; 
 
 // make canvas black 
 ctx.fillStyle = 'rgb(0, 0, 0)';
@@ -47,3 +47,18 @@ ctx.strokeRect(
     - (right_x - left_x) * enemy_border_percent_x, 
     (bottom_y - top_y) * enemy_border_percent_y
 );
+
+
+// 1. 
+var button = document.createElement("button");
+button.innerHTML = "Do Something";
+
+// 2. Append somewhere
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+// 3. Add event handler
+button.addEventListener ("click", function() {
+  alert("did something");
+});
+
