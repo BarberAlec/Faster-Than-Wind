@@ -5,6 +5,13 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Faster Than Wind</title>
+<!--  https://stackoverflow.com/questions/38837835/include-html-in-another-html-file -->
+<script src="jquery.js"></script>	
+<script> 
+$(function(){
+  $("#DivContent").load("audio_source.html"); 
+});
+</script>
 
 </head>
 
@@ -20,6 +27,7 @@
   <div class="w3-bar-item w3-hover-green" id="repair">Paris</div>
   <div class="w3-bar-item w3-hover-blue" id="abandon">Tokyo</div>
 </div>
+<div id="DivContent"></div>
 
 <script src="background.js"></script>
 <script src="ship_of_the_line.js"></script>
