@@ -1,6 +1,11 @@
 body {
     padding: 20px;
   }
+  #hotbar {
+      position: absolute;
+      display: inline-block; 
+      width: max-content;
+  }
   /* button {
     margin-top: 20px;
     line-height: 60px;
