@@ -1,5 +1,6 @@
 // reference canvas tag from html, make it the width and height of window
-const canvas = document.querySelector('.myCanvas');
+var canvas = document.querySelector('.myCanvas');
+canvas.style.position = "absolute";
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;  
 // set canvas type as 2d
@@ -43,14 +44,33 @@ ctx.strokeRect(
 
 // BUTTONS
 
-// var button = document.createElement("button");
-// button.innerHTML = "Do Something";
+var button = document.createElement("button");
+button.innerHTML = "Do Something";
+// button.style.marginTop = "20px";
+button.style.lineHeight = "60px";
+button.style.fontWeight = "bold";
+// button.style.padding = "0 40px";
+button.style.background = "salmon";
+button.style.border = "none";
+button.style.position = "absolute";
 
-// var body = document.getElementsByTagName("body")[0];
-// body.appendChild(button);
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
 
-// // 3. Add event handler
-// button.addEventListener ("click", function() {
-//   alert("did something");
-// });
+// 3. Add event handler
+button.addEventListener ("click", function() {
+  alert("did something");
+});
 
+
+// var div = document.createElement("div");
+// div.style.width = "100px";
+// div.style.height = "100px";
+// div.style.background = "red";
+// div.style.color = "white";
+// div.innerHTML = "Hello";
+
+// document.getElementById("main").appendChild(div);
+// <body>
+// <div id="main"></div>
+// </body>
