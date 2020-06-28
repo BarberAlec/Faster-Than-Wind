@@ -1,4 +1,4 @@
-# Pirate Mania
+# Faster Than Wind
 
 Welcome my lord, come and conquer the sea with me, and we can sail away into the sunset together.
 
