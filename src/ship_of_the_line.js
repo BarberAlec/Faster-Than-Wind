@@ -2,7 +2,8 @@
 
 make_our_ship();
 make_enemy_ship();
-make_canon();
+make_cannon('18%');
+make_cannon('25%');
 
 function make_our_ship() {
     base_image_rot = new Image();
@@ -21,10 +22,22 @@ function make_enemy_ship() {
     }
 }
 
-function make_canon() {
-    var button = document.createElement("button");
-    button.innerHTML = '<img src="../assets/img/small_cannon.png"/>';
+function make_cannon(topMargin) {
+    var cannon_button = document.createElement("cannon");
+    cannon_button.innerHTML = '<img src="../assets/img/small_cannon.png" width="130"/>';
 
+    //cannon_button = '../assets/img/small_cannon.png';
     var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
+
+    body.appendChild(cannon_button);
+    cannon_button.style.border = "none";
+    cannon_button.style.position = "absolute";
+    cannon_button.style.marginLeft = '40%';
+    cannon_button.style.marginTop = topMargin;
+    
+
+    //cannon_button.style.lineHeight = "60px";
+    //cannon_button.style.fontWeight = "bold";
+    //cannon_button.style.background = "salmon";
+    
 }   
