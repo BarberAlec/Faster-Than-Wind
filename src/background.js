@@ -21,14 +21,6 @@ ctx.fillRect(0, 0, width, height);
 ctx.fillStyle = 'rgb(128,128,128)';
 ctx.fillRect(left_x, top_y, right_x-left_x, bottom_y-top_y);
 
-// red rectangle
-ctx.fillStyle = 'rgb(255, 0, 0)';
-ctx.fillRect(50, 50, 100, 150);
-
-// green semi-transparent rectangle
-ctx.fillStyle = 'rgba(0, 255, 0, .5)';
-ctx.fillRect(75, 75, 100, 100);
-
 // game border
 ctx.lineWidth = 5;
 ctx.strokeStyle = 'rgb(255, 255, 255)';
@@ -49,16 +41,16 @@ ctx.strokeRect(
 );
 
 
-// 1. 
-var button = document.createElement("button");
-button.innerHTML = "Do Something";
+// BUTTONS
 
-// 2. Append somewhere
-var body = document.getElementsByTagName("body")[0];
-body.appendChild(button);
+// var button = document.createElement("button");
+// button.innerHTML = "Do Something";
 
-// 3. Add event handler
-button.addEventListener ("click", function() {
-  alert("did something");
-});
+// var body = document.getElementsByTagName("body")[0];
+// body.appendChild(button);
+
+// // 3. Add event handler
+// button.addEventListener ("click", function() {
+//   alert("did something");
+// });
 
