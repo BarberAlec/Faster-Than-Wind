@@ -5,6 +5,11 @@ const height = canvas.height = window.innerHeight;
 // set canvas type as 2d
 const ctx = canvas.getContext('2d');
 
+const top_y = height * 0.02;
+const bottom_y = height * 0.96;
+const left_x = width * 0.02;
+const right_x = width * 0.96;
+
 // make canvas black 
 ctx.fillStyle = 'rgb(0, 0, 0)';
 ctx.fillRect(0, 0, width, height);
@@ -17,15 +22,21 @@ ctx.fillRect(50, 50, 100, 150);
 ctx.fillStyle = 'rgba(0, 255, 0, .5)';
 ctx.fillRect(75, 75, 100, 100);
 
-let left_top_corner_x = width * 0.02;
-let right_top_corner_x = width * 0.96;
-let left_top_corner_y = height * 0.02;
-let right_top_corner_y = height * 0.96;
-
+// outer boarder
 ctx.lineWidth = 5;
 ctx.strokeStyle = 'rgb(255, 255, 255)';
 ctx.strokeRect(
-    0.02*width,
-    0.02*height,
-    width - 0.08*width, 
-    height - 0.08*height);
+    left_x,
+    top_y,
+    right_x - left_x, 
+    bottom_y - top_y
+);
+
+// enemy canvas boarder
+ctx.strokeStyle = 'rgb(255, 255, 255)';
+ctx.strokeRect(
+    right_x,
+    top_y,
+    - (right_x - left_x) * .30, 
+    (bottom_y - top_y) * .40
+);
