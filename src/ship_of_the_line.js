@@ -5,7 +5,7 @@ make_enemy_ship();
 make_cannon('19%');
 make_cannon('26%');
 
-fire_cannon()
+// fire_cannon()
 
 // can1 = new my_cannon('18%');
 // can2 = new my_cannon('25%');

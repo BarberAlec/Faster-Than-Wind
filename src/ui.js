@@ -4,7 +4,7 @@ hotbar.style.left = (right_x - left_x) * .4;
 hotbar.style.top = (bottom_y - top_y) * .8;
 
 var shoot_button = document.getElementById("shoot");
-shoot_button.addEventListener ("click", fire_cannon());
+shoot_button.addEventListener ("click", fire_cannon);
 
 
 
