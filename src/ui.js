@@ -7,7 +7,16 @@ var shoot_button = document.getElementById("shoot");
 shoot_button.addEventListener ("click", fire_cannon);
 
 
+var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg",
+"https://motionarray.imgix.net/preview-271538-Xv2F78jbu7-high_0005.jpg?w=660&q=60&fit=max&auto=format",
+"https://jooinn.com/images/turquoise-ocean-background-1.png",
+"https://p0.pikist.com/photos/485/499/sea-background-water-surface-texture-wave-blue-summer-ocean-thumbnail.jpg",
+"https://wallpapersko.com/wp-content/uploads/ktz/sea-background-nu848hra0494rxlj0l9mzohs7s9z0393jawif7zbbi.jpg",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTar3hJiyps62O6_tBi6p-P6ulxEO298gX90Ug-0lxu5haStn-t&s",
+"https://www.carbonbrief.org/wp-content/uploads/2019/09/Blue-green-sea-surface-background-with-fishes-full-frame-composition-DWGX61-1550x804.jpg"];
 
+
+make_background(0, "https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
 
 // IGNORE HERE DOWN
 
