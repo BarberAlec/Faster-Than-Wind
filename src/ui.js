@@ -4,7 +4,7 @@ hotbar.style.left = (right_x - left_x) * .5;
 hotbar.style.bottom = 3 * top_y ;
 
 var shoot_button = document.getElementById("shoot");
-shoot_button.addEventListener ("click", fire_cannon);
+shoot_button.addEventListener ("click", function(){can1.fire_cannon();});
 
 
 var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg",
