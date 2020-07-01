@@ -16,7 +16,9 @@ body {
       font-family: 'Pirata One', cursive;
       font-size: large;
       /* font-weight: bold; */
-
+  }
+  .myCanvas{
+    z-index: -1;
   }
   /* button {
     margin-top: 20px;

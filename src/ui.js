@@ -16,7 +16,7 @@ var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-14
 "https://www.carbonbrief.org/wp-content/uploads/2019/09/Blue-green-sea-surface-background-with-fishes-full-frame-composition-DWGX61-1550x804.jpg"];
 
 
-make_background(0, "https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
+// make_background(0, "https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
 
 // IGNORE HERE DOWN
 
