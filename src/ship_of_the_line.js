@@ -32,10 +32,31 @@ class cannon_friend{
         this.id = setInterval(function(){t._frame();}, 5);
     }
 
+    explosion_func(){
+        this.explosion = document.createElement("explosion");
+        this.explosion.innerHTML = '<img src="../assets/img/explosion.gif" />';
+
+        this.body.appendChild(this.explosion);
+        this.explosion.style.border = "none";
+        this.explosion.style.position = "absolute";
+        this.explosion.style.marginLeft = '78%';
+        this.explosion.style.marginTop = "180";
+
+        // After 0.78 seconds, kill gif element
+        var t = this;
+        this.id_explos = setInterval(function(){t._kill_explosion();}, 780);
+    }
+
+    _kill_explosion(){
+        clearInterval(this.id_explos);
+        this.explosion.parentNode.removeChild(this.explosion)
+    }
+
     _frame_attack(){
         if (this.pos_att == 195) {
             clearInterval(this.id_att);
-            this.ball_attack.parentNode.removeChild(this.ball_attack)
+            this.ball_attack.parentNode.removeChild(this.ball_attack);
+            this.explosion_func();
         }
         else{
             this.pos_att++;
@@ -47,8 +68,8 @@ class cannon_friend{
     _frame() {
         if (this.pos > 370) {
             clearInterval(this.id);
-            this.ball.parentNode.removeChild(this.ball)
-            this.ball_attack = this._makecannon_ball('3%','70%')
+            this.ball.parentNode.removeChild(this.ball);
+            this.ball_attack = this._makecannon_ball('3%','70%');
             this.pos_att = 0;
             var t = this;
             this.id_att = setInterval(function(){t._frame_attack()}, 5);
