@@ -9,17 +9,20 @@
 
 <title>Faster Than Wind</title>
 <!--  https://stackoverflow.com/questions/38837835/include-html-in-another-html-file -->
-<script src="jquery.js"></script>	
-<script> 
-$(function(){
-  $("#DivContent").load("audio_source.html"); 
-});
-</script>
 
 </head>
 
 <body>
 
+
+<audio autoplay id=Music>
+    <source src="../assets/music/barbara_allen.wav" />
+    <source src="../assets/music/hanging_johnny.wav" />
+    <source src="../assets/music/poor_old_man.wav" />
+    <source src="../assets/music/roll_cotton_down.wav" />
+    <source src="../assets/music/rolling_homew=.wav" />
+    <source src="../assets/music/whiskey-johnny.wav" />
+</audio>
 
 <canvas class="myCanvas" width="320" height="240">
   <p>Your browser doesn't support canvas. Boo hoo!</p>
@@ -35,6 +38,7 @@ $(function(){
 
 <script src="preamble.js"></script>
 <script src="background.js"></script>
+<script src="audio2.js"></script>
 <script src="ship_of_the_line.js"></script>
 <script src="ui.js"></script>
 
