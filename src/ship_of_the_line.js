@@ -224,10 +224,10 @@ class cannon_enemy{
         }
         // Cannonball spawn depends on which compartment cannon is in
         if (this.compatment == 0){
-            this.ball = this._makecannon_ball('20%','48%');
+            this.ball = this._makecannon_ball('11%','80%');
         }
         else if (this.compatment == 1){
-            this.ball = this._makecannon_ball('26%','48%');
+            this.ball = this._makecannon_ball('11%','83%');
         }
         
         this.pos = 0;
@@ -243,7 +243,7 @@ class cannon_enemy{
 
     explosion_func(posX,posY){
         this.explosion = document.createElement("explosion");
-        this.explosion.innerHTML = '<img src="../assets/img/explosion.gif" />';
+        this.explosion.innerHTML = '<img src="../assets/img/explosion.gif" width=130 />';
 
         this.body.appendChild(this.explosion);
         this.explosion.style.border = "none";
@@ -264,23 +264,22 @@ class cannon_enemy{
     _frame_attack_0(miss=false){
         if (miss)
         {
-            var travel_thresh = 500;
+            var travel_thresh = 800;
         }
         else
         {
-            var travel_thresh = 195;
+            var travel_thresh = 300;
         }
-        if (this.pos_att == travel_thresh) {
+        if (this.pos_att >= travel_thresh) {
             clearInterval(this.id_att);
             this.ball_attack.parentNode.removeChild(this.ball_attack);
             if (!miss)
             {
-                this.explosion_func('78%',"180");
+                this.explosion_func('42%',"300");
             }
         }
         else{
-            this.pos_att++;
-            this.ball_attack.style.left = this.pos_att + "px";
+            this.pos_att = this.pos_att + 1.41;
             this.ball_attack.style.top = this.pos_att + "px"; 
         }
     }
@@ -333,7 +332,7 @@ class cannon_enemy{
     }
 
     _frame() {
-        if (this.pos > 370) {
+        if (this.pos < -180) {
             clearInterval(this.id);
             this.ball.parentNode.removeChild(this.ball);
             this.pos_att = 0;
@@ -344,13 +343,13 @@ class cannon_enemy{
 
             if (this.target == 0)
             {
-                this.ball_attack = this._makecannon_ball('3%','70%');
+                this.ball_attack = this._makecannon_ball('3%','45%');
                 this.id_att = setInterval(function(){t._frame_attack_0(miss)}, 5);
             }
             else if (this.target == 1)
             {
                 // Define where the conn ball spawns and call appropiate motion vector function
-                this.ball_attack = this._makecannon_ball('12%','95.5%');
+                this.ball_attack = this._makecannon_ball('45%','90%');
                 this.id_att = setInterval(function(){t._frame_attack_1(miss)}, 5);
             }
             else if (this.target == 2)
@@ -360,8 +359,8 @@ class cannon_enemy{
             }
             }
         else{
-            this.pos = this.pos + 1.41;
-            this.ball.style.left = this.pos + "px";
+            this.pos = this.pos - 1.41;
+            this.ball.style.top = this.pos + "px";
         }
     }
 }
@@ -393,8 +392,8 @@ class ship_friend{
 class ship_enemy{
     constructor(){
         this._draw();
-        this.can1 = new cannon_enemy("82.5%");
-        this.can2 = new cannon_enemy("79%");
+        this.can1 = new cannon_enemy("82.5%",0);
+        this.can2 = new cannon_enemy("79%",1);
     }
     _draw() {
         var ship_img = document.createElement('img'); 
@@ -408,7 +407,7 @@ class ship_enemy{
     }
 
     fire_cannons(){
-        this.can1.fire_cannon(0);
+        //this.can1.fire_cannon(0);
         this.can2.fire_cannon(1);
     }
 }
