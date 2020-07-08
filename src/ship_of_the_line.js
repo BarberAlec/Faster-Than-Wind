@@ -5,16 +5,19 @@ class cannon_friend{
         this.cooldown_time = 2000;
         this.can_fire = true;
         this.compatment = comparment_num;
+        this._draw(v);
+    }
+
+    _draw(v){
         this.cannon_button = document.createElement("cannon");
         this.cannon_button.innerHTML = '<img src="../assets/img/cannon.png" width="180"/>';
         this.body = document.getElementsByTagName("body")[0];
-
         this.body.appendChild(this.cannon_button);
-        this.cannon_button.style.border = "none";
         this.cannon_button.style.position = "absolute";
         this.cannon_button.style.marginLeft = '38%';
         this.cannon_button.style.marginTop = v;
     }
+
     _makecannon_ball(topMargin,leftMargin){
         var ball = document.createElement("cannon_ball");
         ball.innerHTML = '<img src="../assets/img/cannon_ball.png" width="25"/>';
@@ -202,8 +205,6 @@ class ship_friend{
         this.can2.fire_cannon(1);
     }
 }
-
-
 
 
 class ship_enemy{

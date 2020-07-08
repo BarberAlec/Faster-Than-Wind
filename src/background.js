@@ -1,6 +1,5 @@
 // reference canvas tag from html, make it the width and height of window
 var canvas = document.querySelector('.myCanvas');
-canvas.style.position = "absolute";
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 // set canvas type as 2d
@@ -40,7 +39,6 @@ function make_background(background_image = false) {
         );
     };
 
-    
     // make canvas black
     ctx.fillStyle = 'rgb(0, 0, 0)';
     ctx.fillRect(0, 0, width, height);

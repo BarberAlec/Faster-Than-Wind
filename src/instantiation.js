@@ -1,5 +1,4 @@
 
-
 ship_enemy = new ship_enemy();
 ship_friend = new ship_friend();
 
