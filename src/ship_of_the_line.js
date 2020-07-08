@@ -1,9 +1,10 @@
 
 
 class cannon_friend{
-    constructor(v){
+    constructor(v, comparment_num=0){
         this.cooldown_time = 2000;
         this.can_fire = true;
+        this.compatment = comparment_num;
         this.cannon_button = document.createElement("cannon");
         this.cannon_button.innerHTML = '<img src="../assets/img/cannon.png" width="180"/>';
         this.body = document.getElementsByTagName("body")[0];
@@ -36,7 +37,14 @@ class cannon_friend{
             var t = this;
             this.cannon_timeout_id = setInterval(function(){t._reset_cannon_timeout();}, this.cooldown_time);
         }
-        this.ball = this._makecannon_ball('20%','48%')
+        // Cannonball spawn depends on which compartment cannon is in
+        if (this.compatment){
+            this.ball = this._makecannon_ball('20%','48%');
+        }
+        else{
+            this.ball = this._makecannon_ball('20%','48%');
+        }
+        
         this.pos = 0;
         var t = this;
         this.target = trgt_sct;
