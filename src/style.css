@@ -1,33 +1,33 @@
 body {
     padding: 20px;
-  }
-  #hotbar {
-      position: absolute;
-      display: inline-block; 
-      width: max-content;
-      transform: scale(2);
-      /* background-image: url(https://images.unsplash.com/photo-1546962339-5ff89552b8ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80);  */
-      /* background-image: url(https://images.unsplash.com/photo-1555505019-8c3f1c4aba5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);  */
-      background-image: url(https://mulveys.com/site/assets/files/2478/1134_lightwood-1.1920x1080.jpg); 
-      border-style: inset;
-      border-color: brown;
-  }
-  .w3-bar-item {
-      font-family: 'Pirata One', cursive;
-      font-size: large;
-      /* font-weight: bold; */
-  }
-  .myCanvas{
-    z-index: -1;
-  }
-  /* button {
-    margin-top: 20px;
-    line-height: 60px;
-    font-weight: bold;
-    padding: 0 40px;
-    background: salmon;
-    border: none;
-  } */
-  button:hover {
+}
+#hotbar {
+  position: absolute;
+  display: inline-block; 
+  width: max-content;
+  transform: scale(2);
+  /* background-image: url(https://images.unsplash.com/photo-1546962339-5ff89552b8ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1949&q=80);  */
+  /* background-image: url(https://images.unsplash.com/photo-1555505019-8c3f1c4aba5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);  */
+  background-image: url(https://mulveys.com/site/assets/files/2478/1134_lightwood-1.1920x1080.jpg); 
+  border-style: inset;
+  border-color: brown;
+}
+.w3-bar-item {
+  font-family: 'Pirata One', cursive;
+  font-size: large;
+  /* font-weight: bold; */
+}
+.myCanvas{
+  z-index: -1;
+}
+/* button {
+  margin-top: 20px;
+  line-height: 60px;
+  font-weight: bold;
+  padding: 0 40px;
+  background: salmon;
+  border: none;
+} */
+button:hover {
     background: lightsalmon;
-  }
+}
