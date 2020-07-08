@@ -6,8 +6,8 @@ hotbar.style.bottom = 3 * top_y ;
 var shoot_button = document.getElementById("shoot");
 shoot_button.addEventListener ("click", function(){ship_friend.fire_cannons();});
 
-var abdanon_button = document.getElementById("abandon");
-shoot_button.addEventListener ("click", function(){ship_enemy.fire_cannons();});
+var abandon_button = document.getElementById("abandon");
+abandon_button.addEventListener ("click", function(){ship_enemy.fire_cannons();});
 
 var background_counter = 0;
 
