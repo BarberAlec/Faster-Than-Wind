@@ -160,7 +160,7 @@ class cannon_friend{
 
 class ship_friend{
     constructor(){
-        this._draw();
+        this._draw_new();
     }
     _draw(){
         var base_image = new Image();
@@ -168,6 +168,18 @@ class ship_friend{
         base_image.onload = function () {
             ctx.drawImage(base_image, left_x, top_y, right_x - left_x-(right_x - left_x) * enemy_border_percent_x, bottom_y - top_y);
         }
+    }
+    _draw_new(){
+        var ship_img = document.createElement('img'); 
+        // ship_img.style.left = game_width*enemy_border_percent_x);
+        ship_img.style.left = left_x;
+        ship_img.style.top = top_y;
+        ship_img.style.height = game_height;
+        ship_img.style.width = game_width - game_width * enemy_border_percent_x; 
+        // ship_img.style.width = left_x + game_width; 
+        ship_img.style.position = 'absolute';
+        ship_img.src = '../assets/img/small_boat_rot.png';
+        document.getElementById('body').appendChild(ship_img); 
     }
 }
 
