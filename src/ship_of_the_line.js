@@ -38,11 +38,11 @@ class cannon_friend{
             this.cannon_timeout_id = setInterval(function(){t._reset_cannon_timeout();}, this.cooldown_time);
         }
         // Cannonball spawn depends on which compartment cannon is in
-        if (this.compatment){
+        if (this.compatment == 0){
             this.ball = this._makecannon_ball('20%','48%');
         }
-        else{
-            this.ball = this._makecannon_ball('20%','48%');
+        else if (this.compatment == 1){
+            this.ball = this._makecannon_ball('26%','48%');
         }
         
         this.pos = 0;
@@ -184,6 +184,8 @@ class cannon_friend{
 class ship_friend{
     constructor(){
         this._draw();
+        this.can1 = new cannon_friend('18%',0);
+        this.can2 = new cannon_friend('25%',1); 
     }
     _draw(){
         var ship_img = document.createElement('img'); 
@@ -195,11 +197,18 @@ class ship_friend{
         ship_img.src = '../assets/img/small_boat_rot.png';
         document.getElementById('body').appendChild(ship_img); 
     }
+    fire_cannons(){
+        this.can1.fire_cannon(0);
+        this.can2.fire_cannon(1);
+    }
 }
+
+
+
 
 class ship_enemy{
     constructor(){
-        this._draw()
+        this._draw();
     }
     _draw() {
         var ship_img = document.createElement('img'); 

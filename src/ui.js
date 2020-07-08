@@ -4,7 +4,7 @@ hotbar.style.left = (right_x - left_x) * .5;
 hotbar.style.bottom = 3 * top_y ;
 
 var shoot_button = document.getElementById("shoot");
-shoot_button.addEventListener ("click", function(){can1.fire_cannon();});
+shoot_button.addEventListener ("click", function(){ship_friend.fire_cannons();});
 
 
 
