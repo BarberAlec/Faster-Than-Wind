@@ -1,6 +1,5 @@
-body {
-}
 #hotbar {
+  z-index: 5;
   position: absolute;
   display: inline-block; 
   width: max-content;
