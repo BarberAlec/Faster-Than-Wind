@@ -53,11 +53,22 @@ class cannon_friend{
         this.explosion.parentNode.removeChild(this.explosion)
     }
 
-    _frame_attack_0(){
-        if (this.pos_att == 195) {
+    _frame_attack_0(miss=false){
+        if (miss)
+        {
+            var travel_thresh = 500;
+        }
+        else
+        {
+            var travel_thresh = 195;
+        }
+        if (this.pos_att == travel_thresh) {
             clearInterval(this.id_att);
             this.ball_attack.parentNode.removeChild(this.ball_attack);
-            this.explosion_func('78%',"180");
+            if (!miss)
+            {
+                this.explosion_func('78%',"180");
+            }
         }
         else{
             this.pos_att++;
@@ -66,24 +77,45 @@ class cannon_friend{
         }
     }
 
-    _frame_attack_1(){
-        if (this.pos_att >= 195) {
+    _frame_attack_1(miss=false){
+        if (miss)
+        {
+            var travel_thresh = 550;
+        }
+        else
+        {
+            var travel_thresh = 195;
+        }
+        if (this.pos_att >= travel_thresh) {
             clearInterval(this.id_att);
             this.ball_attack.parentNode.removeChild(this.ball_attack);
-            this.explosion_func('83%',"200");
+            if (!miss)
+            {
+                this.explosion_func('83%',"200");
+            }
         }
         else{
             this.pos_att = this.pos_att + 1.41;
             this.ball_attack.style.right = this.pos_att + "px";
-            //this.ball_attack.style.top = this.pos_att + "px"; 
         }
     }
 
-    _frame_attack_2(){
-        if (this.pos_att <= -240) {
+    _frame_attack_2(miss=false){
+        if (miss)
+        {
+            var travel_thresh = -480;
+        }
+        else
+        {
+            var travel_thresh = -240;
+        }
+        if (this.pos_att <= travel_thresh) {
             clearInterval(this.id_att);
             this.ball_attack.parentNode.removeChild(this.ball_attack);
-            this.explosion_func('80.5%',"350");
+            if (!miss)
+            {
+                this.explosion_func('80.5%',"350");
+            }
         }
         else{
             this.pos_att--;
@@ -98,21 +130,25 @@ class cannon_friend{
             this.ball.parentNode.removeChild(this.ball);
             this.pos_att = 0;
             var t = this;
+
+            // Check if hit or miss. 80% chance to hit
+            var miss = (Math.floor((Math.random() * 100) + 1)>=80);
+
             if (this.target == 0)
             {
                 this.ball_attack = this._makecannon_ball('3%','70%');
-                this.id_att = setInterval(function(){t._frame_attack_0()}, 5);
+                this.id_att = setInterval(function(){t._frame_attack_0(miss)}, 5);
             }
             else if (this.target == 1)
             {
                 // Define where the conn ball spawns and call appropiate motion vector function
                 this.ball_attack = this._makecannon_ball('12%','95.5%');
-                this.id_att = setInterval(function(){t._frame_attack_1()}, 5);
+                this.id_att = setInterval(function(){t._frame_attack_1(miss)}, 5);
             }
             else if (this.target == 2)
             {
                 this.ball_attack = this._makecannon_ball('33%','95%');
-                this.id_att = setInterval(function(){t._frame_attack_2()}, 5);
+                this.id_att = setInterval(function(){t._frame_attack_2(miss)}, 5);
             }
             }
         else{
