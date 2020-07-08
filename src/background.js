@@ -74,4 +74,4 @@ var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-14
 
 
 // make_background("https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
-make_background();
+make_background(imgs[0]);
