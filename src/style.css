@@ -1,5 +1,4 @@
 body {
-    padding: 20px;
 }
 #hotbar {
   position: absolute;
@@ -31,3 +30,4 @@ body {
 button:hover {
     background: lightsalmon;
 }
+
