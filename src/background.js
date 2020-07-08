@@ -40,6 +40,7 @@ function make_background(background_image = false) {
         );
     };
 
+    
     // make canvas black
     ctx.fillStyle = 'rgb(0, 0, 0)';
     ctx.fillRect(0, 0, width, height);
