@@ -40,6 +40,7 @@ function make_background(background_image = false) {
         );
     };
 
+    
     // make canvas black
     ctx.fillStyle = 'rgb(0, 0, 0)';
     ctx.fillRect(0, 0, width, height);
@@ -73,4 +74,4 @@ var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-14
 
 
 // make_background("https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
-make_background();
+make_background(imgs[0]);

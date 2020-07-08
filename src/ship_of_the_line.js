@@ -1,8 +1,10 @@
 
 
 class cannon_friend{
-    constructor(v){
-        this.margin = v;
+    constructor(v, comparment_num=0){
+        this.cooldown_time = 2000;
+        this.can_fire = true;
+        this.compatment = comparment_num;
         this.cannon_button = document.createElement("cannon");
         this.cannon_button.innerHTML = '<img src="../assets/img/cannon.png" width="180"/>';
         this.body = document.getElementsByTagName("body")[0];
@@ -11,7 +13,7 @@ class cannon_friend{
         this.cannon_button.style.border = "none";
         this.cannon_button.style.position = "absolute";
         this.cannon_button.style.marginLeft = '38%';
-        this.cannon_button.style.marginTop = this.margin;
+        this.cannon_button.style.marginTop = v;
     }
     _makecannon_ball(topMargin,leftMargin){
         var ball = document.createElement("cannon_ball");
@@ -26,11 +28,32 @@ class cannon_friend{
     }
 
     fire_cannon(trgt_sct=1){
-        this.ball = this._makecannon_ball('20%','48%')
+        if (!this.can_fire){
+            return;
+        }
+        else{
+            // Take cannon offline for a time.
+            this.can_fire = false;
+            var t = this;
+            this.cannon_timeout_id = setInterval(function(){t._reset_cannon_timeout();}, this.cooldown_time);
+        }
+        // Cannonball spawn depends on which compartment cannon is in
+        if (this.compatment){
+            this.ball = this._makecannon_ball('20%','48%');
+        }
+        else{
+            this.ball = this._makecannon_ball('20%','48%');
+        }
+        
         this.pos = 0;
         var t = this;
         this.target = trgt_sct;
         this.id = setInterval(function(){t._frame();}, 5);
+    }
+
+    _reset_cannon_timeout(){
+        clearInterval(this.cannon_timeout_id);
+        this.can_fire = true;
     }
 
     explosion_func(posX,posY){
@@ -163,11 +186,14 @@ class ship_friend{
         this._draw();
     }
     _draw(){
-        var base_image = new Image();
-        base_image.src = '../assets/img/small_boat_rot.png';
-        base_image.onload = function () {
-            ctx.drawImage(base_image, left_x, top_y, right_x - left_x-(right_x - left_x) * enemy_border_percent_x, bottom_y - top_y);
-        }
+        var ship_img = document.createElement('img'); 
+        ship_img.style.left = left_x;
+        ship_img.style.top = top_y;
+        ship_img.style.height = game_height;
+        ship_img.style.width = game_width - game_width * enemy_border_percent_x; 
+        ship_img.style.position = 'absolute';
+        ship_img.src = '../assets/img/small_boat_rot.png';
+        document.getElementById('body').appendChild(ship_img); 
     }
 }
 
@@ -175,13 +201,15 @@ class ship_enemy{
     constructor(){
         this._draw()
     }
-    _draw(){
-        var base_image = new Image();
-        base_image.src = '../assets/img/small_boat.png';
-        base_image.onload = function () {
-            ctx.drawImage(base_image, right_x, top_y, -(right_x - left_x) * enemy_border_percent_x,
-            (bottom_y - top_y) * enemy_border_percent_y);
-        }
+    _draw() {
+        var ship_img = document.createElement('img'); 
+        ship_img.style.left = right_x - (game_width*enemy_border_percent_x);
+        ship_img.style.top = top_y;
+        ship_img.style.height = top_y + (game_height * enemy_border_percent_y);
+        ship_img.style.width = game_width * enemy_border_percent_x; 
+        ship_img.style.position = 'absolute';
+        ship_img.src = '../assets/img/small_boat.png';
+        document.getElementById('body').appendChild(ship_img); 
     }
 }
 
