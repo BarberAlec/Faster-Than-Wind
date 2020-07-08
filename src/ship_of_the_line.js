@@ -173,20 +173,11 @@ class ship_friend{
 
 class ship_enemy{
     constructor(){
-        this._draw_new()
+        this._draw()
     }
-    _draw(){
-        var base_image = new Image();
-        base_image.src = '../assets/img/small_boat.png';
-        base_image.onload = function () {
-            ctx.drawImage(base_image, right_x, top_y, -(right_x - left_x) * enemy_border_percent_x,
-            (bottom_y - top_y) * enemy_border_percent_y);
-        }
-    }
-    _draw_new() {
+    _draw() {
         var ship_img = document.createElement('img'); 
         ship_img.style.left = right_x - (game_width*enemy_border_percent_x);
-        // ship_img.style.left = (left_x + game_width) * (1-enemy_border_percent_x);
         ship_img.style.top = top_y;
         ship_img.style.height = top_y + (game_height * enemy_border_percent_y);
         ship_img.style.width = game_width * enemy_border_percent_x; 
