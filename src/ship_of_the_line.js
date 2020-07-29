@@ -220,6 +220,12 @@ class cannon_enemy{
         this.cannon_button.style.position = "absolute";
         this.cannon_button.style.marginLeft = v;
         this.cannon_button.style.marginTop = "12%";
+
+        // click on cannon stuff
+        this.is_targeted_1 = false;
+        this.is_targeted_2 = false;
+        var t=this;
+        this.cannon_button.addEventListener ("click", function(){t.clicked();});
     }
     _makecannon_ball(topMargin,leftMargin){
         var ball = document.createElement("cannon_ball");
@@ -231,6 +237,29 @@ class cannon_enemy{
         ball.style.marginLeft = leftMargin;
         ball.style.marginTop = topMargin;
         return ball
+    }
+
+    clicked()
+    {
+        if (ship_friend.can1.currently_selected && !this.is_targeted_1)
+        {  
+            // Draw target
+            this.is_targeted_1 = !this.is_targeted_1;
+        }
+        else if (ship_friend.can1.currently_selected)
+        {
+            // Undraw target
+            this.is_targeted_1 = !this.is_targeted_1;
+        }
+        if (ship_friend.can2.currently_selected && !this.is_targeted_2)
+        {
+            this.is_targeted_2 = !this.is_targeted_2;
+        }
+        else if (ship_friend.can2.currently_selected)
+        {
+            this.is_targeted_2 = !this.is_targeted_2;
+        }
+        
     }
 
     fire_cannon(trgt_sct=1){
