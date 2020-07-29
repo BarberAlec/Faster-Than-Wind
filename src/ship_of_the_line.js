@@ -241,25 +241,47 @@ class cannon_enemy{
 
     clicked()
     {
-        if (ship_friend.can1.currently_selected && !this.is_targeted_1)
-        {  
-            // Draw target
+        if (ship_friend.can1.currently_selected)
+        {
             this.is_targeted_1 = !this.is_targeted_1;
+            if (!this.is_targeted_1)
+            {  
+                // Draw target
+                this.target_1 = document.createElement("crosshair");
+                this.target_1.innerHTML = '<img src="../assets/img/crosshair.png" height="60"/>';
+                this.body.appendChild(this.target_1);
+                this.target_1.style.border = "none";
+                this.target_1.style.position = "absolute";
+                this.target_1.style.marginLeft = this.cannon_button.style.marginLeft;
+                this.target_1.style.marginTop = "12%";
+
+            }
+            else
+            {
+                // Undraw target
+                this.target_1.parentNode.removeChild(this.target_1);
+            }
         }
-        else if (ship_friend.can1.currently_selected)
+        if(ship_friend.can2.currently_selected)
         {
-            // Undraw target
-            this.is_targeted_1 = !this.is_targeted_1;
+            if (!this.is_targeted_2)
+            {
+                this.is_targeted_2 = !this.is_targeted_2;
+                // Draw target
+                this.target_2 = document.createElement("crosshair");
+                this.target_2.innerHTML = '<img src="../assets/img/crosshair.png" height="60"/>';
+                this.body.appendChild(this.target_2);
+                this.target_2.style.border = "none";
+                this.target_2.style.position = "absolute";
+                this.target_2.style.marginLeft = this.cannon_button.style.marginLeft;
+                this.target_2.style.marginTop = "13%";
+            }
+            else
+            {
+                this.is_targeted_2 = !this.is_targeted_2;
+                this.target_2.parentNode.removeChild(this.target_2);
+            }
         }
-        if (ship_friend.can2.currently_selected && !this.is_targeted_2)
-        {
-            this.is_targeted_2 = !this.is_targeted_2;
-        }
-        else if (ship_friend.can2.currently_selected)
-        {
-            this.is_targeted_2 = !this.is_targeted_2;
-        }
-        
     }
 
     fire_cannon(trgt_sct=1){
