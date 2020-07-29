@@ -16,6 +16,6 @@ repair_button.addEventListener ("click", function(){
     if (background_counter < (imgs.length - 1)) {
         background_counter++;
     } else {background_counter = 0}
-    make_background(imgs[background_counter]);
+    make_background(false, imgs[background_counter]);
 }
 );
