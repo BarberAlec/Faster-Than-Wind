@@ -254,6 +254,8 @@ class cannon_enemy{
                 this.target_1.style.position = "absolute";
                 this.target_1.style.marginLeft = this.cannon_button.style.marginLeft;
                 this.target_1.style.marginTop = "12%";
+                var t=this;
+                this.target_1.addEventListener ("click", function(){t.clicked();});
 
             }
             else
@@ -275,6 +277,9 @@ class cannon_enemy{
                 this.target_2.style.position = "absolute";
                 this.target_2.style.marginLeft = this.cannon_button.style.marginLeft;
                 this.target_2.style.marginTop = "13%";
+                
+                var t=this;
+                this.target_2.addEventListener ("click", function(){t.clicked();});
             }
             else
             {
