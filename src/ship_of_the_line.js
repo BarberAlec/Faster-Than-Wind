@@ -6,6 +6,23 @@ class cannon_friend{
         this.can_fire = true;
         this.compatment = comparment_num;
         this._draw(v);
+        this.currently_selected = false;
+
+        
+    }
+
+    click(){
+        if(this.currently_selected)
+        {
+            // Unselect
+            this.cannon_button.style.border = "";
+        }
+        else
+        {
+            // Make selected
+            this.cannon_button.style.border = "4px groove red";
+        }
+        this.currently_selected = !this.currently_selected;
     }
 
     _draw(v){
@@ -16,6 +33,10 @@ class cannon_friend{
         this.cannon_button.style.position = "absolute";
         this.cannon_button.style.marginLeft = '38%';
         this.cannon_button.style.marginTop = v;
+
+        // click on cannon stuff
+        var t=this;
+        this.cannon_button.addEventListener ("click", function(){t.click();});
     }
 
     _makecannon_ball(topMargin,leftMargin){
@@ -293,7 +314,7 @@ class cannon_enemy{
         {
             var travel_thresh = 195;
         }
-        if (this.pos_att >= travel_thresh) {
+        if (this.pos_att <= travel_thresh) {
             clearInterval(this.id_att);
             this.ball_attack.parentNode.removeChild(this.ball_attack);
             if (!miss)
@@ -302,8 +323,8 @@ class cannon_enemy{
             }
         }
         else{
-            this.pos_att = this.pos_att + 1.41;
-            this.ball_attack.style.right = this.pos_att + "px";
+            this.pos_att = this.pos_att - 1;
+            this.ball_attack.style.left = this.pos_att;
         }
     }
 
@@ -349,7 +370,9 @@ class cannon_enemy{
             else if (this.target == 1)
             {
                 // Define where the conn ball spawns and call appropiate motion vector function
-                this.ball_attack = this._makecannon_ball('45%','90%');
+                this.ball_attack = this._makecannon_ball('26%','66.5%');
+                //this._makecannon_ball('400','1280');
+                this.pos_att = '1280';
                 this.id_att = setInterval(function(){t._frame_attack_1(miss)}, 5);
             }
             else if (this.target == 2)
