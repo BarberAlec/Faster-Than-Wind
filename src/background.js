@@ -15,7 +15,7 @@ const game_height = bottom_y - top_y;
 const enemy_border_percent_x = 0.30;
 const enemy_border_percent_y = 0.70;
 
-function make_background(background_image = false) {
+function make_background(gen_graphics = false, background_image = false) {
 
     function make_game_boarder() {
     ctx.lineWidth = 5;
@@ -44,14 +44,49 @@ function make_background(background_image = false) {
     ctx.fillRect(0, 0, width, height);
 
     if (background_image != false) {
-        var img = new Image();
-        img.src = background_image;
-        // Make sure the image is loaded first otherwise nothing will draw.
-        img.onload = function(){
-            ctx.drawImage(img,left_x,top_y,game_width,game_height);   
-            make_game_boarder()
-            make_enemy_boarder()
-        };
+        if (gen_graphics) {
+            var img = new Image();
+            img.src = background_image;
+            //img.width = 0.02 * game_width;
+            //img.style.height = 'auto';
+            // Make sure the image is loaded first otherwise nothing will draw.
+
+
+            img.onload = function(){
+                // ctx.drawImage(img,left_x,top_y,game_width,game_height);   
+                
+
+                var tempCanvas = document.createElement("canvas"),
+                tCtx = tempCanvas.getContext("2d");
+
+                const pat_scaling = .5;
+                tempCanvas.width = img.width*pat_scaling;
+                tempCanvas.height = img.height*pat_scaling;
+
+                tCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*pat_scaling, img.height*pat_scaling);
+            
+                ctx.rect(left_x, top_y, game_width, game_height);
+                ctx.fillStyle = ctx.createPattern(tempCanvas, "repeat");            
+                ctx.fill();
+
+                // var pat = ctx.createPattern(img, "repeat");
+                // ctx.rect(left_x, top_y, game_width, game_height);
+                // ctx.fillStyle = pat;
+                // ctx.fill();
+
+                make_game_boarder()
+                make_enemy_boarder()
+            };
+        } else {
+            var img = new Image();
+            img.src = background_image;
+            // Make sure the image is loaded first otherwise nothing will draw.
+            img.onload = function(){
+                ctx.drawImage(img,left_x,top_y,game_width,game_height);   
+                make_game_boarder()
+                make_enemy_boarder()
+            };
+        }
     } else {
         // fill inside game border grey
         ctx.fillStyle = "rgb(128,128,128)";
@@ -70,6 +105,7 @@ var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-14
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTar3hJiyps62O6_tBi6p-P6ulxEO298gX90Ug-0lxu5haStn-t&s",
 "https://www.carbonbrief.org/wp-content/uploads/2019/09/Blue-green-sea-surface-background-with-fishes-full-frame-composition-DWGX61-1550x804.jpg"];
 
+var img_tiles = ["../assets/img/water_tiled.png"]
 
 // make_background("https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg");
-make_background(imgs[0]);
+make_background(true, img_tiles[0]);
