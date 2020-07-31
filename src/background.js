@@ -24,20 +24,26 @@ function wait(ms){
   }
 }
 
-function make_background(gen_graphics = false, background_image = false) {
+class Background{
 
-    function make_game_boarder() {
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = 'rgb(255, 255, 255)';
-    ctx.strokeRect(
-        left_x,
-        top_y,
-        right_x - left_x,
-        bottom_y - top_y
-    );
+    constructor(gen_graphics = false, background_image = false){
+        self = this;
+        this.refresh(gen_graphics, background_image);
     }
 
-    function make_enemy_boarder() {
+
+    _make_game_boarder() {
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.strokeRect(
+            left_x,
+            top_y,
+            right_x - left_x,
+            bottom_y - top_y
+        );
+    }
+
+    _make_enemy_boarder() {
         // enemy canvas border
         ctx.strokeStyle = 'rgb(255, 255, 255)';
         ctx.strokeRect(
@@ -46,64 +52,142 @@ function make_background(gen_graphics = false, background_image = false) {
             - (right_x - left_x) * enemy_border_percent_x,
             (bottom_y - top_y) * enemy_border_percent_y
         );
-    };
+    }
 
-    // make canvas black
-    ctx.fillStyle = 'rgb(0, 0, 0)';
-    ctx.fillRect(0, 0, width, height);
 
-    if (background_image != false) {
-        if (gen_graphics) {
+    refresh(gen_graphics = false, background_image = false) {
+
+        // make canvas black
+        ctx.fillStyle = 'rgb(0, 0, 0)';
+        ctx.fillRect(0, 0, width, height);
+
+        if (background_image != false) {
             var img = new Image();
             img.src = background_image;
             img.onload = function(){
+                if (gen_graphics) {
+                    // Friendly Ship background
+                    var tempCanvas = document.createElement("canvas"),
+                    tCtx = tempCanvas.getContext("2d");
+                    const pat_scaling = 0.5;
+                    tempCanvas.width = img.width*pat_scaling;
+                    tempCanvas.height = img.height*pat_scaling;
+                    tCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*pat_scaling, img.height*pat_scaling);
+                    ctx.rect(left_x, top_y, game_width, game_height);
+                    ctx.fillStyle = ctx.createPattern(tempCanvas, "repeat");            
+                    ctx.fill()
 
-                // Friendly Ship background
-                var tempCanvas = document.createElement("canvas"),
-                tCtx = tempCanvas.getContext("2d");
-                const pat_scaling = 0.5;
-                tempCanvas.width = img.width*pat_scaling;
-                tempCanvas.height = img.height*pat_scaling;
-                tCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*pat_scaling, img.height*pat_scaling);
-                ctx.rect(left_x, top_y, game_width, game_height);
-                ctx.fillStyle = ctx.createPattern(tempCanvas, "repeat");            
-                ctx.fill()
-
-                // Enemy Ship background
-                const enemy_ship_ratio = (game_height*enemy_border_percent_y) /
-                     (game_width * (1 - enemy_border_percent_x));
-                const enemy_pat_scaling = pat_scaling * enemy_ship_ratio;
-                var ttempCanvas = document.createElement("canvas"),
-                ttCtx = ttempCanvas.getContext("2d");
-                ttempCanvas.width = img.width*enemy_pat_scaling;
-                ttempCanvas.height = img.height*enemy_pat_scaling;
-                ttCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*enemy_pat_scaling, img.height*enemy_pat_scaling);
-                ctx.fillStyle = ctx.createPattern(ttempCanvas, "repeat");            
-                ctx.fillRect(right_x-game_width*enemy_border_percent_x,top_y,game_width*enemy_border_percent_x,game_height*enemy_border_percent_y);
-
+                    // Enemy Ship background
+                    const enemy_ship_ratio = (game_height*enemy_border_percent_y) /
+                        (game_width * (1 - enemy_border_percent_x));
+                    const enemy_pat_scaling = pat_scaling * enemy_ship_ratio;
+                    var ttempCanvas = document.createElement("canvas"),
+                    ttCtx = ttempCanvas.getContext("2d");
+                    ttempCanvas.width = img.width*enemy_pat_scaling;
+                    ttempCanvas.height = img.height*enemy_pat_scaling;
+                    ttCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*enemy_pat_scaling, img.height*enemy_pat_scaling);
+                    ctx.fillStyle = ctx.createPattern(ttempCanvas, "repeat");            
+                    ctx.fillRect(right_x-game_width*enemy_border_percent_x,top_y,game_width*enemy_border_percent_x,game_height*enemy_border_percent_y);
+                } else {
+                    ctx.drawImage(img,left_x,top_y,game_width,game_height);   
+                };
                 // Add game boarders
-                make_game_boarder()
-                make_enemy_boarder()
-            };
+                self._make_game_boarder()
+                self._make_enemy_boarder()
+            }
         } else {
-            var img = new Image();
-            img.src = background_image;
-            img.onload = function(){
-                ctx.drawImage(img,left_x,top_y,game_width,game_height);   
-                // Add game boarders
-                make_game_boarder()
-                make_enemy_boarder()
-            };
-        }
-    } else {
-        // fill inside game boarder grey
-        ctx.fillStyle = "rgb(128,128,128)";
-        ctx.fillRect(left_x, top_y, right_x-left_x, bottom_y-top_y);
-        // add game boarders
-        make_game_boarder()
-        make_enemy_boarder()
-    };
-};
+            // fill inside game boarder grey
+            ctx.fillStyle = "rgb(128,128,128)";
+            ctx.fillRect(left_x, top_y, right_x-left_x, bottom_y-top_y);
+            // add game boarders
+            this._make_game_boarder()
+            this._make_enemy_boarder()
+        };
+    }
+    
+
+}
+
+// function make_background(gen_graphics = false, background_image = false) {
+
+//     function make_game_boarder() {
+//     ctx.lineWidth = 5;
+//     ctx.strokeStyle = 'rgb(255, 255, 255)';
+//     ctx.strokeRect(
+//         left_x,
+//         top_y,
+//         right_x - left_x,
+//         bottom_y - top_y
+//     );
+//     }
+
+//     function make_enemy_boarder() {
+//         // enemy canvas border
+//         ctx.strokeStyle = 'rgb(255, 255, 255)';
+//         ctx.strokeRect(
+//             right_x,
+//             top_y,
+//             - (right_x - left_x) * enemy_border_percent_x,
+//             (bottom_y - top_y) * enemy_border_percent_y
+//         );
+//     };
+
+//     // make canvas black
+//     ctx.fillStyle = 'rgb(0, 0, 0)';
+//     ctx.fillRect(0, 0, width, height);
+
+//     if (background_image != false) {
+//         if (gen_graphics) {
+//             var img = new Image();
+//             img.src = background_image;
+//             img.onload = function(){
+
+//                 // Friendly Ship background
+//                 var tempCanvas = document.createElement("canvas"),
+//                 tCtx = tempCanvas.getContext("2d");
+//                 const pat_scaling = 0.5;
+//                 tempCanvas.width = img.width*pat_scaling;
+//                 tempCanvas.height = img.height*pat_scaling;
+//                 tCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*pat_scaling, img.height*pat_scaling);
+//                 ctx.rect(left_x, top_y, game_width, game_height);
+//                 ctx.fillStyle = ctx.createPattern(tempCanvas, "repeat");            
+//                 ctx.fill()
+
+//                 // Enemy Ship background
+//                 const enemy_ship_ratio = (game_height*enemy_border_percent_y) /
+//                      (game_width * (1 - enemy_border_percent_x));
+//                 const enemy_pat_scaling = pat_scaling * enemy_ship_ratio;
+//                 var ttempCanvas = document.createElement("canvas"),
+//                 ttCtx = ttempCanvas.getContext("2d");
+//                 ttempCanvas.width = img.width*enemy_pat_scaling;
+//                 ttempCanvas.height = img.height*enemy_pat_scaling;
+//                 ttCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*enemy_pat_scaling, img.height*enemy_pat_scaling);
+//                 ctx.fillStyle = ctx.createPattern(ttempCanvas, "repeat");            
+//                 ctx.fillRect(right_x-game_width*enemy_border_percent_x,top_y,game_width*enemy_border_percent_x,game_height*enemy_border_percent_y);
+
+//                 // Add game boarders
+//                 make_game_boarder()
+//                 make_enemy_boarder()
+//             };
+//         } else {
+//             var img = new Image();
+//             img.src = background_image;
+//             img.onload = function(){
+//                 ctx.drawImage(img,left_x,top_y,game_width,game_height);   
+//                 // Add game boarders
+//                 make_game_boarder()
+//                 make_enemy_boarder()
+//             };
+//         }
+//     } else {
+//         // fill inside game boarder grey
+//         ctx.fillStyle = "rgb(128,128,128)";
+//         ctx.fillRect(left_x, top_y, right_x-left_x, bottom_y-top_y);
+//         // add game boarders
+//         make_game_boarder()
+//         make_enemy_boarder()
+//     };
+// };
 
 
 var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-1469968966zou.jpg",
@@ -116,4 +200,6 @@ var imgs = ["https://storage.needpix.com/rsynced_images/blue-water-background-14
 
 var img_tiles = ["../assets/img/water_tiled.png"]
 
-make_background(true, img_tiles[0]);
+//myBackground = new Background();
+//make_background(true, img_tiles[0]);
+myBackground = new Background(gen_graphics=true, background_image=img_tiles[0]);
