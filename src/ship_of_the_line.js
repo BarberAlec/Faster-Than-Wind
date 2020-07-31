@@ -7,6 +7,7 @@ class cannon_friend{
         this.compatment = comparment_num;
         this._draw(v);
         this.currently_selected = false;
+        this.current_target = -1;
     }
 
     click(){
@@ -25,6 +26,15 @@ class cannon_friend{
             // Make selected
             this.select();
         }
+    }
+
+    set_target(target)
+    {
+        this.current_target = target;
+    }
+    remove_target()
+    {
+        this.current_target = -1;
     }
 
     select()
@@ -66,7 +76,7 @@ class cannon_friend{
     }
 
     fire_cannon(trgt_sct=1){
-        if (!this.can_fire){
+        if (!this.can_fire || this.current_target == -1){
             return;
         }
         else{
@@ -85,7 +95,7 @@ class cannon_friend{
         
         this.pos = 0;
         var t = this;
-        this.target = trgt_sct;
+        // this.target = this.current_target;
         this.id = setInterval(function(){t._frame();}, 5);
     }
 
@@ -195,18 +205,18 @@ class cannon_friend{
             // Check if hit or miss. 80% chance to hit
             var miss = (Math.floor((Math.random() * 100) + 1)>=80);
 
-            if (this.target == 0)
+            if (this.current_target == 0)
             {
                 this.ball_attack = this._makecannon_ball('3%','70%');
                 this.id_att = setInterval(function(){t._frame_attack_0(miss)}, 5);
             }
-            else if (this.target == 1)
+            else if (this.current_target == 1)
             {
                 // Define where the conn ball spawns and call appropiate motion vector function
                 this.ball_attack = this._makecannon_ball('12%','95.5%');
                 this.id_att = setInterval(function(){t._frame_attack_1(miss)}, 5);
             }
-            else if (this.target == 2)
+            else if (this.current_target == 2)
             {
                 this.ball_attack = this._makecannon_ball('33%','95%');
                 this.id_att = setInterval(function(){t._frame_attack_2(miss)}, 5);
@@ -257,9 +267,14 @@ class cannon_enemy{
     {
         if (ship_friend.can1.currently_selected)
         {
+            
+
             this.is_targeted_1 = !this.is_targeted_1;
-            if (!this.is_targeted_1)
+            if (this.is_targeted_1)
             {  
+                // Tell cannon 1 that they are aiming at us
+                ship_friend.can1.set_target(this.compatment);
+
                 // Draw target
                 this.target_1 = document.createElement("crosshair");
                 this.target_1.innerHTML = '<img src="../assets/img/crosshair.png" height="60"/>';
@@ -274,15 +289,22 @@ class cannon_enemy{
             }
             else
             {
+                // get rid of target 
+                ship_friend.can1.remove_target();
                 // Undraw target
                 this.target_1.parentNode.removeChild(this.target_1);
             }
         }
         if(ship_friend.can2.currently_selected)
         {
-            if (!this.is_targeted_2)
+            
+
+            this.is_targeted_2 = !this.is_targeted_2;
+            if (this.is_targeted_2)
             {
-                this.is_targeted_2 = !this.is_targeted_2;
+                // Tell cannon 2 that they are aiming at us
+                ship_friend.can2.set_target(this.compatment);
+
                 // Draw target
                 this.target_2 = document.createElement("crosshair");
                 this.target_2.innerHTML = '<img src="../assets/img/crosshair.png" height="60"/>';
@@ -297,7 +319,8 @@ class cannon_enemy{
             }
             else
             {
-                this.is_targeted_2 = !this.is_targeted_2;
+                // get rid of target 
+                ship_friend.can2.remove_target();
                 this.target_2.parentNode.removeChild(this.target_2);
             }
         }
