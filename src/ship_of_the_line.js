@@ -7,22 +7,36 @@ class cannon_friend{
         this.compatment = comparment_num;
         this._draw(v);
         this.currently_selected = false;
-
-        
     }
 
     click(){
         if(this.currently_selected)
         {
             // Unselect
-            this.cannon_button.style.border = "";
+            this.unselect();
         }
         else
         {
+            // if other cannon is already selected, then unselect that cannon
+            // we do this by unselecting all cannons and then selecting this one again
+            ship_friend.can1.unselect();
+            ship_friend.can2.unselect();
+
             // Make selected
-            this.cannon_button.style.border = "4px groove red";
+            this.select();
         }
-        this.currently_selected = !this.currently_selected;
+    }
+
+    select()
+    {
+        this.cannon_button.style.border = "4px groove red";
+        this.currently_selected = true;
+    }
+
+    unselect()
+    {
+        this.cannon_button.style.border = "";
+        this.currently_selected = false;
     }
 
     _draw(v){
