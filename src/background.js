@@ -68,7 +68,7 @@ function make_background(gen_graphics = false, background_image = false) {
                 // Friendly Ship background
                 var tempCanvas = document.createElement("canvas"),
                 tCtx = tempCanvas.getContext("2d");
-                const pat_scaling = .5;
+                const pat_scaling = 0.5;
                 tempCanvas.width = img.width*pat_scaling;
                 tempCanvas.height = img.height*pat_scaling;
                 tCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*pat_scaling, img.height*pat_scaling);
@@ -85,7 +85,7 @@ function make_background(gen_graphics = false, background_image = false) {
                 ttCtx = ttempCanvas.getContext("2d");
                 ttempCanvas.width = img.width*enemy_pat_scaling;
                 ttempCanvas.height = img.height*enemy_pat_scaling;
-                ttCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*enemy_pat_scaling, img.height*pat_scaling);
+                ttCtx.drawImage(img,0,0,img.width,img.height,0,0,img.width*enemy_pat_scaling, img.height*enemy_pat_scaling);
                 ctx.fillStyle = ctx.createPattern(ttempCanvas, "repeat");            
                 // ctx.fillStyle = "rgb(255, 0, 0)";
                 ctx.fillRect(right_x-game_width*enemy_border_percent_x,top_y,game_width*enemy_border_percent_x,game_height*enemy_border_percent_y);
